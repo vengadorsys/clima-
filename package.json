@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "build:single": "tsc -b && vite build --mode single"
+    "build:single": "tsc -b && vite build --mode single",
+    "build:hostinger": "tsc -b && vite build --outDir site --emptyOutDir"
   },
   "dependencies": {
     "lucide-react": "^1.57.0",

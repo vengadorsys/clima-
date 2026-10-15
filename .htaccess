@@ -1,0 +1,7 @@
+# Despliegue en Hostinger: el repositorio se clona en public_html y se sirve la carpeta compilada site/.
+Options -Indexes
+RedirectMatch 404 /\.git
+RedirectMatch 404 ^/(src|node_modules|package(-lock)?\.json|tsconfig.*\.json|vite\.config\.ts|README\.md)
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/site/
+RewriteRule ^(.*)$ site/$1 [L]
