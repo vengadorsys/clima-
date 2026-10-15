@@ -407,9 +407,11 @@ code {
   margin: 0;
   min-width: 0;
 }
-.hero__visual .illustration {
+.hero__visual .photo {
   width: 100%;
   height: auto;
+  aspect-ratio: 600 / 448;
+  object-fit: cover;
   border-radius: 16px;
   box-shadow: 0 30px 60px rgb(0 0 0 / 0.35);
 }
@@ -452,26 +454,6 @@ code {
 @media (max-width: 520px) {
   .hero__actions .btn {
     width: 100%;
-  }
-}
-
-/* animaciones de ilustración */
-.airflow path {
-  stroke-dasharray: 10 14;
-  animation: flow 2.8s linear infinite;
-}
-.fan {
-  transform-origin: 76px 65px;
-  animation: spin 3s linear infinite;
-}
-@keyframes flow {
-  to {
-    stroke-dashoffset: -48;
-  }
-}
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
   }
 }
 
@@ -600,13 +582,14 @@ code {
   cursor: zoom-in;
   background: var(--white);
 }
-.gallery__btn .illustration {
+.gallery__btn .photo {
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 600 / 448;
+  object-fit: cover;
   transition: transform 0.4s ease;
 }
-.gallery__btn:hover .illustration {
+.gallery__btn:hover .photo {
   transform: scale(1.03);
 }
 .gallery__zoom {
@@ -1261,7 +1244,7 @@ code {
   box-shadow: 0 30px 80px rgb(0 0 0 / 0.35);
 }
 .modal--wide {
-  width: min(880px, calc(100% - 32px));
+  width: min(680px, calc(100% - 32px));
 }
 .modal::backdrop {
   background: rgb(11 26 43 / 0.7);
@@ -1275,7 +1258,7 @@ code {
 .modal--wide .modal__body {
   padding-top: 4rem;
 }
-.modal--wide .illustration {
+.modal--wide .photo {
   width: 100%;
   height: auto;
   border-radius: var(--radius);

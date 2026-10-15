@@ -25,13 +25,13 @@ import {
 import { business, services, type ServiceId } from '../config'
 import { messages } from '../lib/whatsapp'
 import { WhatsAppButton } from './WhatsApp'
-import {
-  BedroomIllustration,
-  CommercialIllustration,
-  HeroIllustration,
-  MaintenanceIllustration,
-  OutdoorIllustration,
-} from './Illustrations'
+import heroImg from '../assets/photos/hero.jpg'
+import bedroomImg from '../assets/photos/recamara.jpg'
+import outdoorImg from '../assets/photos/exterior.jpg'
+import maintenanceImg from '../assets/photos/mantenimiento.jpg'
+import commercialImg from '../assets/photos/comercial.jpg'
+
+const AI_NOTE = 'Imagen de referencia generada con IA'
 
 function SectionHead({ eyebrow, title, intro, light }: { eyebrow: string; title: string; intro?: ReactNode; light?: boolean }) {
   return (
@@ -72,9 +72,15 @@ export function Hero() {
           </div>
         </div>
         <figure className="hero__visual">
-          <HeroIllustration />
+          <img
+            className="photo"
+            src={heroImg}
+            width={600}
+            height={448}
+            alt="Técnico con uniforme azul marino instalando un minisplit en una sala moderna"
+          />
           <figcaption className="hero__caption">
-            <span className="mono">Ilustración de referencia</span> · se sustituye por fotos reales del negocio
+            <span className="mono">{AI_NOTE}</span> · se sustituye por fotos reales del negocio
           </figcaption>
         </figure>
       </div>
@@ -147,10 +153,34 @@ export function Services() {
 /* ---------- Galería ---------- */
 
 const gallery = [
-  { id: 'recamara', title: 'Minisplit en recámara', note: 'Ubicación sobre cabecera, flujo hacia el área de descanso.', Art: BedroomIllustration },
-  { id: 'exterior', title: 'Unidad exterior en muro', note: 'Soportes nivelados y tubería protegida con canaleta.', Art: OutdoorIllustration },
-  { id: 'mantenimiento', title: 'Mantenimiento con manómetros', note: 'Revisión de presiones, limpieza de serpentín y filtros.', Art: MaintenanceIllustration },
-  { id: 'comercial', title: 'Espacio comercial', note: 'Equipos tipo cassette en plafón para oficina.', Art: CommercialIllustration },
+  {
+    id: 'recamara',
+    title: 'Minisplit en recámara',
+    note: 'Ubicación sobre cabecera, flujo hacia el área de descanso.',
+    src: bedroomImg,
+    alt: 'Minisplit blanco instalado sobre la cabecera de una recámara moderna',
+  },
+  {
+    id: 'exterior',
+    title: 'Unidad exterior en muro',
+    note: 'Soportes nivelados y tubería protegida con canaleta.',
+    src: outdoorImg,
+    alt: 'Unidad exterior de aire acondicionado montada en muro con soportes y canaleta',
+  },
+  {
+    id: 'mantenimiento',
+    title: 'Mantenimiento con manómetros',
+    note: 'Revisión de presiones, limpieza de serpentín y filtros.',
+    src: maintenanceImg,
+    alt: 'Técnico con guantes limpiando el serpentín de un minisplit con manómetros conectados',
+  },
+  {
+    id: 'comercial',
+    title: 'Espacio comercial',
+    note: 'Equipos tipo cassette en plafón para oficina.',
+    src: commercialImg,
+    alt: 'Oficina con equipos de aire acondicionado tipo cassette en el plafón',
+  },
 ]
 
 export function Gallery() {
@@ -170,13 +200,13 @@ export function Gallery() {
         <SectionHead
           eyebrow="Ejemplos visuales de instalaciones"
           title="El detalle está en la instalación"
-          intro="Ilustraciones de referencia. Esta galería se reemplazará con fotografías de trabajos reales del negocio."
+          intro="Imágenes de referencia generadas con IA. Esta galería se reemplazará con fotografías de trabajos reales del negocio."
         />
         <div className="gallery">
           {gallery.map((g, i) => (
             <figure key={g.id} className={`gallery__item gallery__item--${i}`}>
               <button className="gallery__btn" onClick={() => setActive(i)} aria-label={`Ampliar: ${g.title}`}>
-                <g.Art />
+                <img className="photo" src={g.src} width={600} height={448} alt={g.alt} loading="lazy" />
                 <span className="gallery__zoom" aria-hidden="true">
                   <ZoomIn size={18} />
                 </span>
@@ -203,9 +233,9 @@ export function Gallery() {
             <button className="icon-btn modal__close" onClick={() => dialogRef.current?.close()} aria-label="Cerrar">
               <X size={20} />
             </button>
-            <item.Art />
+            <img className="photo" src={item.src} width={600} height={448} alt={item.alt} />
             <p className="modal__text">
-              <strong>{item.title}.</strong> {item.note}
+              <strong>{item.title}.</strong> {item.note} <span className="mono">({AI_NOTE})</span>
             </p>
           </div>
         )}
